@@ -1,5 +1,6 @@
 package com.vwo.utils;
 
+import com.vwo.driver.DriverManger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -10,9 +11,9 @@ import java.time.Duration;
 
 public class WaitHelpers {
 
-    WebDriver driver;
+     WebDriver driver;
 
-    WebDriverWait wait;
+     WebDriverWait wait;
 
     public WaitHelpers(WebDriver driver) {
         this.driver = driver;
@@ -34,17 +35,12 @@ public class WaitHelpers {
 
     public WebElement waitUntilVisibilityOfElementByLocator(int seconds,By locator){
         wait = new WebDriverWait(driver, Duration.ofSeconds(seconds));
-        return wait.until(ExpectedConditions.visibilityOf(driver.findElement(locator)));
+        return wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
     }
 
     public WebElement waitUntilElementIsClickable(int seconds , By locator){
         wait = new WebDriverWait(driver,Duration.ofSeconds(seconds));
         return wait.until(ExpectedConditions.elementToBeClickable(locator));
     }
-
-
-
-
-
 
 }

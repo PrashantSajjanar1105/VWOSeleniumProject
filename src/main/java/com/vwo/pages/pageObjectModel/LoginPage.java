@@ -1,15 +1,16 @@
 package com.vwo.pages.pageObjectModel;
 
+import com.vwo.base.BasePage;
 import com.vwo.utils.PropertiesReader;
 import com.vwo.utils.WaitHelpers;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-public class LoginPage {
+public class LoginPage extends BasePage {
 
     WebDriver driver;
 
-    WaitHelpers waitHelpers;
+    WaitHelpers waitHelpers ;
 
     public LoginPage(WebDriver driver) {
         this.driver=driver;
@@ -24,12 +25,31 @@ public class LoginPage {
 
 
     public String loginWithInvalidCredentials(String user,String pwd) {
-        driver.get(PropertiesReader.readKey("loginUrl"));
-        driver.findElement(username).sendKeys(user);
-        driver.findElement(password).sendKeys(pwd);
-        driver.findElement(signIn).click();
+//        driver.get(PropertiesReader.readKey("loginUrl"));
+//        driver.findElement(username).sendKeys(user);
+//        driver.findElement(password).sendKeys(pwd);
+//        driver.findElement(signIn).click();
+
+        getUrl(PropertiesReader.readKey("loginUrl"));
+        enterInput(username,user);
+        enterInput(password,pwd);
+        clickElement(signIn);
+
 //        since waitHelpers will directly give the Webelement
         return waitHelpers.waitUntilVisibilityOfElementByLocator(5,errorMessage).getText();
+    }
+
+    public void loginWithValidCredentials(String user,String pwd) {
+//        driver.get(PropertiesReader.readKey("loginUrl"));
+//        driver.findElement(username).sendKeys(user);
+//        driver.findElement(password).sendKeys(pwd);
+//        driver.findElement(signIn).click();
+
+
+        getUrl(PropertiesReader.readKey("loginUrl"));
+        enterInput(username,user);
+        enterInput(password,pwd);
+        clickElement(signIn);
     }
 
 }
