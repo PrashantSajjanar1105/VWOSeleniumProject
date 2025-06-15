@@ -48,7 +48,10 @@ public class DriverManger {
     }
 
     public static void down() {
-        driver.quit();
+        if(driver != null){
+            driver.quit();
+            driver=null;
+        }
     }
 
 }
